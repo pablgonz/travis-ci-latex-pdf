@@ -18,6 +18,8 @@ If you are looking for instructions to build LaTeX on GitLab CI, have a look [be
 Thanks to [Dan Foreman-Mackey](http://dfm.io/posts/travis-latex/) for writing about Tectonic.
 The first two methods do not use the pdflatex engine to compile, but [Tectonic](https://tectonic-typesetting.github.io) which is a fork of XeTeX (thanks to [ShreevatsaR](https://tex.stackexchange.com/users/48/shreevatsar) for pointing this out). 
 
+Important note: there have been recurring problems with the persistent urls from which the packages are downloaded, if you encounter this (e.g. 'PURL setup link has expired SSL certificate'  or 'couldn't probe ...') then you can try the workaround described at https://github.com/tectonic-typesetting/tectonic/issues/131#issuecomment-435792227
+
 #### Pro:
 * automatically loops TeX and BibTeX as needed, and only as much as needed
 * automatically downloads LaTeX packages which are needed
