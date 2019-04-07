@@ -81,9 +81,9 @@ At the moment it uses `latexmk` to compile pdfs which is configured to run `pdfl
 #### Con:
 
 * Packages are (not yet) cached, so the build time is long
-* You still need to specify which packages you require to be installed
+* You still need to specify which packages you require to be installed (unless you use the texliveonfly image, see [the instructions below](texlive-docker-texliveonfly))
 
-Build time example file: 4 minutes
+Build time example file: 4 minutes (9 minutes when using texliveonfly)
 
 Want this? Instructions [below](#texlive-docker).
 
@@ -167,11 +167,15 @@ tectonic ./main.tex
 * Install the Travis GitHub App by going to the [Marketplace](https://github.com/marketplace/travis-ci), scroll down, select Open Source (also when you want to use private repos) and select 'Install it for free', then 'Complete order and begin installation'. 
 * Now you should be in Personal settings | Applications | Travis CI | Configure and you can allow access to repositories, either select repos or all repos.
 * Copy [`3-texlive-docker/.travis.yml`](3-texlive-docker/.travis.yml) and specify which tex files you want to build in the `build-pattern` option.
-* Add all the required LaTeX packages to the `packages` option, by checking at https://www.ctan.org/pkg/some-package to see in which TeX Live package it is contained (which may be different than the LaTeX package name).
+* Add all the required LaTeX packages to the `packages` option, by checking at https://www.ctan.org/pkg/some-package to see in which TeX Live package it is contained (which may be different than the LaTeX package name). Alternatively, use the texliveonfly images as [below](#texlive-docker-texliveonfly).
 * Commit and push, you can view your repositories at [travis-ci.com](https://travis-ci.com/).
 * For deploying to GitHub releases, see the notes [below](#deploy).
 * Have a look at the [Tips](#tips).
 * If your build doesn't start, see [Troubleshooting](#troubleshooting).
+
+### <a name="texlive-docker-texliveonfly">Using a docker image with texlive and texliveonfly</a>
+
+You can 
 
 ## <a name="pdflatex">Instructions for building with pdflatex and TeX Live</a>
 
