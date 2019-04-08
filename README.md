@@ -175,7 +175,12 @@ tectonic ./main.tex
 
 ### <a name="texlive-docker-texliveonfly">Using a docker image with texlive and texliveonfly</a>
 
-You can 
+You can also use a docker image which uses texliveonfly, it is based on the above-mentioned docker image.
+It is somewhat experimental in the sense that sometimes texliveonfly seems to hang (for longer than 10 mins), although usually it seems to work fine.
+Texliveonfly calls pdflatex by default, but you can change this and more options in arguments.
+Some documentation can be found at https://tex.stackexchange.com/a/463842/98850
+
+The only change in the instructions is that you use the docker image as specified in [`texlive-docker-texliveonfly/.travis.yml`](texlive-docker-texliveonfly/.travis.yml), and that you don't need to specify packages manually in that file.
 
 ## <a name="pdflatex">Instructions for building with pdflatex and TeX Live</a>
 
