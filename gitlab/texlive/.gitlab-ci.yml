@@ -1,0 +1,21 @@
+# Setup before every job
+before_script:
+  - source ./texlive/texlive_install.sh
+
+# Defines a job
+compile:
+  script:
+    - cd ${CI_PROJECT_DIR}/src/
+    # Use texliveonfly to download packages, latexmk to handle biber and number of compiles
+    - texliveonfly --compiler=latexmk --arguments="-pdf" ./main.tex
+
+  retry: 2 # Because there have been internet connection problems
+
+  # Use artifacts for caching, see https://docs.gitlab.com/ee/ci/caching/#cache-vs-artifacts
+  # And according to the docs, "Caching is an optimization, but isn’t guaranteed to always work."
+  # All paths are relative to ${CI_PROJECT_DIR} (actually you can see in the log it cd's to there)
+  # However, it doesn't seem to work for texlive, because it is not a subdirectory of the project directory, and installing texlive in the project was not yet successful.
+  artifacts:
+    paths:
+      - src/*.pdf
+      - /tmp/texlive

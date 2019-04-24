@@ -182,9 +182,9 @@ Some documentation can be found at https://tex.stackexchange.com/a/463842/98850
 
 The only change in the instructions is that you use the docker image as specified in [`texlive-docker-texliveonfly/.travis.yml`](texlive-docker-texliveonfly/.travis.yml), and that you don't need to specify packages manually in that file.
 
-## <a name="pdflatex">Instructions for building with pdflatex and TeX Live</a>
+## <a name="pdflatex">Instructions for building with pdflatex/lualatex/latexmk/xelatex/texliveonfly/etc and TeX Live</a>
 
-If for some reason you prefer the pdflatex engine with the TeX Live distribution, read on.
+If for some reason you prefer the pdflatex (or any other) engine with the TeX Live distribution, read on.
 This is based on the [LaTeX3 build file](https://github.com/latex3/latex3/blob/master/support/texlive.sh).
 
 This method installs an almost minimal TeX Live installation on Travis, and compiles with pdflatex.
@@ -197,11 +197,12 @@ This repo contains:
 
 * Install the Travis GitHub App by going to the [Marketplace](https://github.com/marketplace/travis-ci), scroll down, select Open Source (also when you want to use private repos) and select 'Install it for free', then 'Complete order and begin installation'. 
  * Now you should be in Personal settings | Applications | Travis CI | Configure and you can allow access to repositories, either select repos or all repos.
-* Copy the files in the folder [`4-texlive`](4-texlive) to your repo, so `.travis.yml` and the `texlive/` folder.
+* Copy the files in the folder [`4-texlive`](4-texlive) to your repo, so `.travis.yml` and the `texlive/` folder. You can use an empty `texlive_packages` file initially, the given one is just an example.
 * Specify the right tex file in the `.travis.yml`. Possibly you also need to change the folder in `before_script` if not using `src/`.
 * Commit and push, you can view your repositories at [travis-ci.com](https://travis-ci.com/).
 (Thanks to [@jason-neal](https://github.com/PHPirates/travis-ci-latex-pdf/pull/6) for improving this)
-* If the build fails because some package is missing you have to add it manually. This configuration uses the `texliveonfly` package which tries to download missing packages but sometimes the error message is non-standard and that fails. In that case, put the package you want to install in `texlive/texlive_packages`, by checking at https://www.ctan.org/pkg/some-package to see in which TeX Live package it is contained (which may be different than the LaTeX package name). If you find a package which is not automatically downloaded, it would be great if you could let us known by submitting an issue.
+* For deploying to GitHub releases, see the notes [below](#deploy).
+* If the build fails because some package is missing you have to add it manually in `texlive_packages`. This configuration uses the `texliveonfly` package which tries to download missing packages but sometimes the error message is non-standard and that fails. In that case, put the package you want to install in `texlive/texlive_packages`, by checking at https://www.ctan.org/pkg/some-package to see in which TeX Live package it is contained (which may be different than the LaTeX package name). If you find a package which is not automatically downloaded, it would be great if you could let us know by submitting an issue.
 * Tip from [gvacaliuc](https://github.com/gvacaliuc/travis-ci-latex-pdf): In order to maintain the install scripts in a central repo and link to them, you could also just copy `.travis.yml` and replace
 ```yaml
 install:
@@ -290,6 +291,11 @@ Also see harshjv's original [blog post](https://harshjv.github.io/blog/document-
 If you want to add/update a method to build LaTeX, look in the [contributing guidelines](.github/contributing.rst).
 
 # <a name="gitlab">GitLab CI</a>
+
+At the moment, only the Texlive method explained [above](#pdflatex) was tested in GitLab for this repo.
+The instructions are similar but with of course a different configuration file, which can be found in [gitlab/texlive](gitlab/texlive) for now. This still has to be moved to GitLab.
+The only disadvantage is that the caching of TeX Live does not work, because it is not installed in the project, but artifacts have to be in the project directory for GitLab.
+The build time for the example file is around four minutes.
 
 A more extensive overview of configurations for GitLab CI will come in the future, either in this or an other repo.
 Please contribute if you can help with this!
