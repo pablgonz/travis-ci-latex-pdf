@@ -67,7 +67,7 @@ Build time example file: 1-2 minutes
 
 Want this? Instructions [below](#tectonic).
 
-## 3. Docker image with TeX Live (latexmk, pfdlatex, lualatex, etc.)
+## 3. Docker image with TeX Live
 
 This method downloads a docker image which contains a small TeX Live installation. Thanks to [Andreas Strauman](https://github.com/Strauman/travis-latexbuild/) for figuring this out, give his [tex.stackexchange.com](https://tex.stackexchange.com/a/450256/98850) answer an upvote if you like it!
 At the moment it uses `latexmk` to compile pdfs which is configured to run `pdflatex` by default, but it should be easy to configure it for other tex engines.
@@ -87,18 +87,17 @@ Build time example file: 4 minutes (9 minutes when using texliveonfly)
 
 Want this? Instructions [below](#texlive-docker).
 
-## 4. TeX Live with pdflatex
+## 4. TeX Live with pdflatex/lualatex/latexmk/xelatex/texliveonfly/etc
 
 Thanks to [Joseph Wright](https://tex.stackexchange.com/users/73/joseph-wright) who pointed out that they use something based on this setup for LaTeX3 development.
 
 #### Pro:
-* Uses pdflatex to compile, this can be a requirement for some cases like the `minted` package.
+* Uses any compiler you want, this can be useful for example if you need pdflatex for some cases like the `minted` package.
 * Fast, because of caching
 * Almost all required packages are downloaded automatically
 * Tested to work with the `minted` package
 
 #### Con:
-* You need to specify by hand how much times to compile to make sure references, indices and bibtex references work.
 * You need to copy extra build files to each repository, besides the `.travis.yml`.
 
 Build time example file: 1-2 minutes
