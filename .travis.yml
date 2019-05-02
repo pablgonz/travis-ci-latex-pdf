@@ -12,5 +12,7 @@ cache:
 # Change working directory so including files will work
 before_script: cd $TRAVIS_BUILD_DIR/src/
 script:
-# texliveonfly will download packages automatically, use latexmk to automatically handle bibtex and references
-- texliveonfly --compiler=latexmk --arguments="-pdf" ./fonts-test.tex
+  # texliveonfly will download packages automatically,
+  - texliveonfly ./fonts-test.tex
+  # Use latexmk to automatically handle bibtex and references
+  - latexmk -pdf ./fonts-test.tex
