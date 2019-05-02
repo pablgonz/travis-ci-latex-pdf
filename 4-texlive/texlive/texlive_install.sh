@@ -23,15 +23,6 @@ fi
 # Just including texlua so the cache check above works
 tlmgr install luatex
 
-# Install package to install packages automatically
-tlmgr install texliveonfly
-
-# Install babel languages manually, texliveonfly does't understand the babel error message
-tlmgr install collection-langeuropean
-
-# Common fonts with hard to debug errors if not found
-tlmgr install collection-fontsrecommended
-
 # In the case you have to install packages manually, you can use an index of packages like
 # http://ctan.mirrors.hoobly.com/systems/texlive/tlnet/archive/
 # Or better, check https://www.ctan.org/pkg/some-package to see in which TeX Live package it is contained.
