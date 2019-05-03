@@ -1,5 +1,3 @@
-> Update May 2018 Travis is moving open source to travis-ci.com (instead of travis-ci.org). Travis is also now available as GitHub App in the Marketplace. Instructions are updated.
-
 ### LaTeX + Git + Travis &rightarrow; release pdf
 
 [![Build Status](https://travis-ci.org/PHPirates/travis-ci-latex-pdf.svg?branch=master)](https://travis-ci.org/PHPirates/travis-ci-latex-pdf)
@@ -31,6 +29,8 @@ Important note: there have been recurring problems with the persistent urls from
 * Tectonic does not support the `-shell-escape` flag at the moment (see [tectonic/#38](https://github.com/tectonic-typesetting/tectonic/issues/38)), which is required for example by the minted package. The pdflatex way (below) has been tested to work with the minted package.
 
 We will quickly compare two methods to use Tectonic, after that we will discuss more conventional methods which can compile with pfdlatex, lualatex etc.
+
+Note that since May 2018 Travis moved open source to travis-ci.com (instead of travis-ci.org). Travis is also now available as GitHub App in the Marketplace, but old repositories (like this one) are still on travis-ci.org.
 
 ## 1. Docker image with Tectonic
 
