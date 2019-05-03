@@ -16,8 +16,12 @@ script:
   - texliveonfly main.tex
   # You can use latexmk to automatically handle bibtex and references (recommended)
   - latexmk -pdf main.tex
-  # But you could use any other compiler as well. Example:
+
+  # But you could use any other compiler as well instead of latexmk. Example:
 #  - pdflatex main.tex
 #  - bibtex main
 #  - pdflatex main.tex
 #  - pdflatex main.tex # Compile twice to fix references
+
+  # You can also pass arguments to texliveonfly:
+#  - texliveonfly --arguments='-shell-escape' main.tex

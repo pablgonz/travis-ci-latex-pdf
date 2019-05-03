@@ -10,11 +10,11 @@ tex-config:
 jobs:
   include:
     # Each - starts a separate job
-    - script: chmod +x $TRAVIS_BUILD_DIR/test/tectonic-docker-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-docker-test.sh
-    - script: chmod +x $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh
-    - script: chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh
-    - script: chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh
-    - script: chmod +x $TRAVIS_BUILD_DIR/test/texlive-test.sh && $TRAVIS_BUILD_DIR/test/texlive-test.sh
+    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/tectonic-docker-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-docker-test.sh
+    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh
+    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh
+    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh
+    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-test.sh && $TRAVIS_BUILD_DIR/test/texlive-test.sh
 
 cache:
   directories:
