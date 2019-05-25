@@ -9,6 +9,34 @@ You want that because then every time you push it will automatically check if yo
 If you are looking for instructions to build LaTeX locally, look [here](https://github.com/Ruben-Sten/TeXiFy-IDEA#installation-instructions).
 If you are looking for instructions to build LaTeX on GitLab CI, have a look [below](#gitlab).
 
+
+**Table of Contents**  
+
+- [Choose your build method](#choose-your-build-method)
+  - [Tectonic](#tectonic)
+  - [1. Docker image with Tectonic](#1-docker-image-with-tectonic)
+  - [2. Miniconda with Tectonic](#2-miniconda-with-tectonic)
+  - [3. Docker image with TeX Live](#3-docker-image-with-tex-live)
+  - [4. TeX Live with pdflatex/lualatex/latexmk/xelatex/texliveonfly/etc](#4-tex-live-with-pdflatexlualatexlatexmkxelatextexliveonflyetc)
+  - [5. TeX Live and pdflatex via tinytex with R.](#5-tex-live-and-pdflatex-via-tinytex-with-r)
+- [Instructions for each build method](#instructions-for-each-build-method)
+  - [Instructions for building with Docker and Tectonic](#tectonic-docker)
+  - [Instructions for building with Miniconda and Tectonic](#tectonic)
+    - [Separate instructions for adding biber to your Miniconda and Tectonic setup](#biber)
+  - [Instructions for building with TeX Live from a Docker image](#texlive-docker)
+    - [Using a docker image with texlive and texliveonfly](#texlive-docker-texliveonfly)
+  - [Instructions for building with pdflatex/lualatex/latexmk/xelatex/texliveonfly/etc and TeX Live](#pdflatex)
+  - [Instructions for building with TeX Live and pdflatex via tinytex with R](#tinytex)
+  - [To automatically deploy pdfs to GitHub release](#deploy)
+    - [First time setup](#first-time-setup)
+    - [For every new project](#for-every-new-project)
+  - [Tips](#tips)
+  - [Troubleshooting](#troubleshooting)
+  - [Notes](#notes)
+  - [Contributing](#contributing)
+  - [GitLab CI](#gitlab)
+
+
 # Choose your build method
 
 ## Tectonic
