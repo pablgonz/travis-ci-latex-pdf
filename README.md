@@ -33,8 +33,8 @@ If you are looking for instructions to build LaTeX on GitLab CI, have a look [be
   - [Tips](#tips)
   - [Troubleshooting](#troubleshooting)
   - [Notes](#notes)
-  - [Contributing](#contributing)
-  - [GitLab CI](#gitlab)
+- [Contributing](#contributing)
+- [GitLab CI](#gitlab)
 
 
 # Choose your build method
@@ -316,7 +316,7 @@ I also put some of these instructions on the [TeX Stackexchange](https://tex.sta
 Some original thoughts from [harshjv's blog](https://harshjv.github.io/blog/setup-latex-pdf-build-using-travis-ci/), and thanks to [jackolney](https://github.com/jackolney/travis-ci-latex-pdf) for all his attempts to put it into practice.
 Also see harshjv's original [blog post](https://harshjv.github.io/blog/document-building-versioning-with-tex-document-git-continuous-integration-dropbox/).
 
-## Contributing
+# Contributing
 
 If you want to add/update a method to build LaTeX, look in the [contributing guidelines](.github/contributing.rst).
 
