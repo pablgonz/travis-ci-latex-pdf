@@ -125,6 +125,7 @@ Thanks to [Joseph Wright](https://tex.stackexchange.com/users/73/joseph-wright) 
 * Fast, because of caching
 * Almost all required packages are downloaded automatically
 * Tested to work with the `minted` package
+* Tested to work with [custom fonts](#texlive-custom-fonts)
 
 #### Con:
 * You need to copy extra build files to each repository, besides the `.travis.yml`.
@@ -231,6 +232,7 @@ This repo contains:
 (Thanks to [@jason-neal](https://github.com/PHPirates/travis-ci-latex-pdf/pull/6) for improving this)
 * For deploying to GitHub releases, see the notes [below](#deploy).
 * If the build fails because some package is missing you have to add it manually in `texlive_packages`. This configuration uses the `texliveonfly` package which tries to download missing packages but sometimes the error message is non-standard and that fails. In that case, put the package you want to install in `texlive/texlive_packages`, by checking at https://www.ctan.org/pkg/some-package to see in which TeX Live package it is contained (which may be different than the LaTeX package name). If you find a package which is not automatically downloaded, it would be great if you could let us know by submitting an issue.
+* If you use custom fonts, [read on](#texlive-custom-fonts).
 * Tip from [gvacaliuc](https://github.com/gvacaliuc/travis-ci-latex-pdf): In order to maintain the install scripts in a central repo and link to them, you could also just copy `.travis.yml` and replace
 ```yaml
 install:
@@ -250,6 +252,23 @@ install:
 Note that sometimes `tlmgr` selects a broken mirror to download TeX Live from, so you get an error like `Output was gpg: verify signatures failed: eof`. Restarting the build will probably fix this, it will auto-select a different mirror. (Thanks to [@jason-neal](https://github.com/jason-neal/travis-ci-latex-pdf-texlive/commit/d48a5f92d2394f27371dd32c94a16415de499058) for testing this.)
 
 You can also read a nice blog post by Jeremy Grifski ([@jrg94](https://github.com/jrg94)) about using the setup from this repo including the minted package at https://therenegadecoder.com/code/how-to-build-latex-with-travis-ci-and-minted/
+
+### <a name="texlive-custom-fonts">Using custom fonts</a>
+
+In order to enable Travis to use custom fonts, i.e. those fonts not provided by Ubuntu or TeX Live packages, it is probably easiest to push them with git.
+An example is in this repo, with the file [src/fonts.tex](src/fonts.tex) and the fonts in [src/fonts](src/fonts).
+You can do the following to use them on Travis:
+* Make sure you have the fonts pushed to you GitHub repository
+* Make sure that your `texlive_packages` file contains the packages `collection-fontsrecommended` and `luaotfload` 
+* If you are starting from scratch, you can adapt [4-texlive/fonts-travis-yml/.travis.yml](4-texlive/fonts-travis-yml/.travis.yml). If you want to change your current .travis.yml, do the following:
+    * In the `.travis.yml`, uncomment the following lines (make sure to change src/fonts to your own path if it is different)
+    ```yaml
+    before_install:
+      - mkdir $HOME/.fonts
+      - cp -a $TRAVIS_BUILD_DIR/src/fonts/. $HOME/.fonts/
+      - fc-cache -f -v
+    ```
+    * Make sure to compile with lualatex or xelatex, for example if you previously had `texliveonfly main.tex` and `latexmk -pdf main.tex` in your `.travis.yml`, then change them to `texliveonfly main.tex --compiler=lualatex` and `latexmk -pdflua main.tex`.
 
 ## <a name="tinytex">Instructions for building with TeX Live and pdflatex via tinytex with R</a>
 
