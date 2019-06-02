@@ -7,7 +7,8 @@ language: generic
 # Install fonts
 before_install:
   - mkdir $HOME/.fonts
-  - cp -a $TRAVIS_BUILD_DIR/src/fonts/. $HOME/.fonts/
+  - cp -a $TRAVIS_BUILD_DIR/src/fonts/otf/. $HOME/.fonts/
+  - cp -a $TRAVIS_BUILD_DIR/src/fonts/ttf/. $HOME/.fonts/
   - fc-cache -f -v
 
 install:
