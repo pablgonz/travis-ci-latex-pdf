@@ -10,4 +10,6 @@ source ${TRAVIS_BUILD_DIR}/4-texlive/texlive/texlive_install.sh
 cd ${TRAVIS_BUILD_DIR}/src/
 texliveonfly ./main.tex
 
+texliveonfly fonts.tex --compiler=lualatex
+
 #texliveonfly --arguments='-shell-escape' ./minted.tex
