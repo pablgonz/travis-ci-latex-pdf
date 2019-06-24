@@ -7,5 +7,4 @@ tex-config:
   - packages=adjustbox,fontenc,geometry,ifpdf,ifxetex,ifluatex,pdfpages,qrcode,relsize,tikz,xifthen,xparse,yfonts
 
 script:
-  - docker pull strauman/travis-latexbuild:small
-  - docker run --mount src=${TRAVIS_BUILD_DIR}/,target=/repo,type=bind strauman/travis-latexbuild:small
+  - docker run --mount src=${TRAVIS_BUILD_DIR}/,target=/repo,type=bind phpirates/texlive-latexbuild:texliveonfly
