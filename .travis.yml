@@ -9,17 +9,24 @@ tex-config:
   - build-pattern=src/main.tex,src/mwe.tex
   - packages=xkeyval, collection-latex, collection-langeuropean, exam, amsmath, amscls, mathtools, thmtools, stmaryrd, xcolor, pdfpages, pgf, cancel, hyperref, pgfplots, listings, scalerel, stackengine, etoolbox, listofitems, marvosym, amsfonts, opensans, slantsc, fancyhdr, ulem, algorithms, algorithmicx, float, booktabs, enumitem, polynom, fancyvrb, makecmds, multirow, chngcntr, fvextra, upquote, lineno, ifplatform, xstring, framed, caption, collection-fontsrecommended, minted, pgfgantt, geometry, beamer, translator, environ, trimspaces, imakeidx, graphics, tools, oberdiek
 
+cache:
+  directories:
+    - /tmp/texlive
+    - $HOME/.texlive
+    - $HOME/miniconda
+    - $HOME/.cache/Tectonic
+
 jobs:
   include:
     # Each - starts a separate job
     - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/tectonic-docker-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-docker-test.sh
       name: "Run tectonic-docker-test"
-    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh
-      name: "Run tectonic-miniconda-test"
+#    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh
+#      name: "Run tectonic-miniconda-test"
 #    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh
 #      name: "Run texlive-docker-test"
-    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh
-      name: "Run texlive-docker-texliveonfly"
+#    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh
+#      name: "Run texlive-docker-texliveonfly"
     - before_install:
         - sudo apt-get install python-pygments
         - mkdir $HOME/.fonts
@@ -29,13 +36,6 @@ jobs:
 #        - source $TRAVIS_BUILD_DIR/4-texlive/texlive/texlive_install.sh
       script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-test.sh && $TRAVIS_BUILD_DIR/test/texlive-test.sh
       name: "Run texlive-test"
-
-cache:
-  directories:
-    - /tmp/texlive
-    - $HOME/.texlive
-    - $HOME/miniconda
-    - $HOME/.cache/Tectonic
 
 # Disable this test because it's broken and nobody uses it anyway
 #    - stage: tinytex
