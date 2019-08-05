@@ -2,7 +2,7 @@
 language: generic
 
 # Add distro
-# dist: bionic
+dist: bionic
 
 # This is required to test texlive-docker because it searches for config options in this file
 tex-config:
@@ -16,8 +16,8 @@ jobs:
       name: "Run tectonic-docker-test"
     - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh
       name: "Run tectonic-miniconda-test"
-    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh
-      name: "Run texlive-docker-test"
+#    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh
+#      name: "Run texlive-docker-test"
     - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh
       name: "Run texlive-docker-texliveonfly"
     - before_install:
