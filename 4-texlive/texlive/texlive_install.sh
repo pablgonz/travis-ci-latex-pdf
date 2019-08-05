@@ -15,7 +15,7 @@ if ! command -v texlua > /dev/null; then
   cd install-tl-20*
 
   # Install a minimal system
-  ./install-tl --profile=../texlive/texlive.profile
+  ./install-tl --profile=$TRAVIS_BUILD_DIR/4-texlive/texlive/texlive.profile
 
   cd ..
 fi
@@ -30,7 +30,7 @@ tlmgr install luatex
 # Then you can add one package per line in the texlive_packages file
 # We need to change the working directory before including a file
 cd "$(dirname "${BASH_SOURCE[0]}")"
-tlmgr install $(cat texlive_packages)
+tlmgr install $(cat texlive_packages | grep -v -e '^[[:space:]]*$' -e '^#')
 
 # Keep no backups (not required, simply makes cache bigger)
 tlmgr option -- autobackup 0

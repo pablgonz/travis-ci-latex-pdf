@@ -1,6 +1,8 @@
 # We test each method for building LaTeX in a separate job.
 language: generic
 
+# Add distro
+# dist: bionic
 
 # This is required to test texlive-docker because it searches for config options in this file
 tex-config:
@@ -11,14 +13,22 @@ jobs:
   include:
     # Each - starts a separate job
     - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/tectonic-docker-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-docker-test.sh
+      name: "Run tectonic-docker-test"
     - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh
+      name: "Run tectonic-miniconda-test"
     - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh
+      name: "Run texlive-docker-test"
     - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh
+      name: "Run texlive-docker-texliveonfly"
     - before_install:
+        - sudo apt-get install python-pygments
         - mkdir $HOME/.fonts
         - cp -a $TRAVIS_BUILD_DIR/src/fonts/. $HOME/.fonts/
         - fc-cache -f -v
+      install:
+        - source $TRAVIS_BUILD_DIR/4-texlive/texlive/texlive_install.sh
       script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-test.sh && $TRAVIS_BUILD_DIR/test/texlive-test.sh
+      name: "Run texlive-test"
 
 cache:
   directories:
