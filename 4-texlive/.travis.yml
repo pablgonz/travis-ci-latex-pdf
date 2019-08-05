@@ -4,7 +4,7 @@ dist: bionic
 
 ## Uncomment the following lines if you use minted package or custom fonts
 #before_install:
-# - apt-get install python-pygments
+# - sudo apt-get install python-pygments
 # - mkdir $HOME/.fonts
 # - cp -a $TRAVIS_BUILD_DIR/src/fonts/. $HOME/.fonts/
 # - fc-cache -f -v
