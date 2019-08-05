@@ -11,3 +11,5 @@ collection-fontsrecommended
 collection-fontsrecommended
 # LuaTeX
 luaotfload
+# Add minted, texliveonfly fail whit this
+minted
