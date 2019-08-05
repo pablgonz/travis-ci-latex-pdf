@@ -2,14 +2,16 @@
 # http://ctan.mirrors.hoobly.com/systems/texlive/tlnet/archive/
 # Or better, check https://www.ctan.org/pkg/some-package to see in which TeX Live package it is contained.
 # Or use $ tlmgr info some-package
-# Base dependencies and tools to compile
-texliveonfly
-latexmk
+
+# Base tools to compile
+texliveonfly latexmk
+
 # Collections
 collection-langeuropean
 collection-fontsrecommended
 collection-fontsrecommended
 # LuaTeX
 luaotfload
+
 # Add minted,fvextra ---texliveonfly fail whit this
-minted fvextra
+minted fvextra upquote
