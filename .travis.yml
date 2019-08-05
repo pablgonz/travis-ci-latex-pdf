@@ -25,8 +25,8 @@ jobs:
         - mkdir $HOME/.fonts
         - cp -a $TRAVIS_BUILD_DIR/src/fonts/. $HOME/.fonts/
         - fc-cache -f -v
-      install:
-        - source $TRAVIS_BUILD_DIR/4-texlive/texlive/texlive_install.sh
+#       install:
+#        - source $TRAVIS_BUILD_DIR/4-texlive/texlive/texlive_install.sh
       script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-test.sh && $TRAVIS_BUILD_DIR/test/texlive-test.sh
       name: "Run texlive-test"
 
