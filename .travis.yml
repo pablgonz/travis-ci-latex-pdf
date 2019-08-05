@@ -1,8 +1,7 @@
 # We test each method for building LaTeX in a separate job.
 language: generic
 
-# Add distro
-# dist: xenian
+dist: xenian
 
 # This is required to test texlive-docker because it searches for config options in this file
 tex-config:
@@ -21,7 +20,7 @@ jobs:
     - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh
       name: "Run texlive-docker-texliveonfly"
     - before_install:
-        - sudo apt-get install python-pygments
+        - apt-get install python-pygments
         - mkdir $HOME/.fonts
         - cp -a $TRAVIS_BUILD_DIR/src/fonts/. $HOME/.fonts/
         - fc-cache -f -v

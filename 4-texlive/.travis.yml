@@ -1,8 +1,13 @@
 language: generic
 
-# Dependency of the minted package
+dist: bionic
+
+## Uncomment the following lines if you use minted package or custom fonts
 #before_install:
-# - sudo apt-get install python-pygments
+# - apt-get install python-pygments
+# - mkdir $HOME/.fonts
+# - cp -a $TRAVIS_BUILD_DIR/src/fonts/. $HOME/.fonts/
+# - fc-cache -f -v
 install:
   - source ./texlive/texlive_install.sh
 cache:

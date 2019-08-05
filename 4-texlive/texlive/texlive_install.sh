@@ -23,11 +23,6 @@ fi
 # Just including texlua so the cache check above works
 tlmgr install luatex
 
-# In the case you have to install packages manually, you can use an index of packages like
-# http://ctan.mirrors.hoobly.com/systems/texlive/tlnet/archive/
-# Or better, check https://www.ctan.org/pkg/some-package to see in which TeX Live package it is contained.
-
-# Then you can add one package per line in the texlive_packages file
 # We need to change the working directory before including a file
 cd "$(dirname "${BASH_SOURCE[0]}")"
 tlmgr install $(cat texlive_packages | grep -v -e '^[[:space:]]*$' -e '^#')
