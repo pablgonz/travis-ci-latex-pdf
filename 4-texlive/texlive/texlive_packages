@@ -14,4 +14,4 @@ collection-fontsrecommended
 luaotfload
 
 # Add minted,fvextra ---texliveonfly fail whit this
-minted fvextra upquote
+minted fvextra upquote lineno
