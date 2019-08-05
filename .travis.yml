@@ -2,7 +2,7 @@
 language: generic
 
 # Add distro
-dist: xenial
+dist: bionic
 
 # This is required to test texlive-docker because it searches for config options in this file
 tex-config:
