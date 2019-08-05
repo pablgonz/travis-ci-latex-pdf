@@ -13,5 +13,5 @@ collection-fontsrecommended
 # LuaTeX
 luaotfload
 
-# Add minted,fvextra ---texliveonfly fail whit this
-minted fvextra upquote lineno xstring framed
+# texliveonfly fail whit this
+minted fvextra upquote lineno xstring framed caption
