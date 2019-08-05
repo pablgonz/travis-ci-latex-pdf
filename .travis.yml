@@ -2,19 +2,12 @@
 language: generic
 
 # Add distro
-dist: xenian
+# dist: xenian
 
 # This is required to test texlive-docker because it searches for config options in this file
 tex-config:
   - build-pattern=src/main.tex,src/mwe.tex
   - packages=xkeyval, collection-latex, collection-langeuropean, exam, amsmath, amscls, mathtools, thmtools, stmaryrd, xcolor, pdfpages, pgf, cancel, hyperref, pgfplots, listings, scalerel, stackengine, etoolbox, listofitems, marvosym, amsfonts, opensans, slantsc, fancyhdr, ulem, algorithms, algorithmicx, float, booktabs, enumitem, polynom, fancyvrb, makecmds, multirow, chngcntr, fvextra, upquote, lineno, ifplatform, xstring, framed, caption, collection-fontsrecommended, minted, pgfgantt, geometry, beamer, translator, environ, trimspaces, imakeidx, graphics, tools, oberdiek
-
-cache:
-  directories:
-    - /tmp/texlive
-    - $HOME/.texlive
-    - $HOME/miniconda
-    - $HOME/.cache/Tectonic
 
 jobs:
   include:
@@ -34,7 +27,13 @@ jobs:
         - fc-cache -f -v
       script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-test.sh && $TRAVIS_BUILD_DIR/test/texlive-test.sh
       name: "Run texlive-test"
-
+cache:
+  directories:
+    - /tmp/texlive
+    - $HOME/.texlive
+    - $HOME/miniconda
+    - $HOME/.cache/Tectonic
+    
 # Disable this test because it's broken and nobody uses it anyway
 #    - stage: tinytex
 #      language: r
