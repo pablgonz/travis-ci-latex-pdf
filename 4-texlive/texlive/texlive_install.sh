@@ -15,7 +15,6 @@ if ! command -v texlua > /dev/null; then
   cd install-tl-20*
 
   # Install a minimal system
-  #./install-tl --profile=$TRAVIS_BUILD_DIR/4-texlive/texlive/texlive.profile
   ./install-tl --profile=../texlive/texlive.profile
 
   cd ..
