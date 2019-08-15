@@ -1,8 +1,6 @@
 # We test each method for building LaTeX in a separate job.
 language: generic
 
-dist: xenian
-
 # This is required to test texlive-docker because it searches for config options in this file
 tex-config:
   - build-pattern=src/main.tex,src/mwe.tex
