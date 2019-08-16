@@ -23,9 +23,8 @@ fi
 # Just including texlua so the cache check above works
 tlmgr install luatex
 
-# We need to change the working directory before including a file
-cd "$(dirname "${BASH_SOURCE[0]}")"
-tlmgr install $(cat texlive_packages | grep -v -e '^[[:space:]]*$' -e '^#')
+# We specify the directory in which it is located texlive_packages
+tlmgr install $(sed 's/\s*#.*//;/^\s*$/d' texlive/texlive_packages)
 
 # Keep no backups (not required, simply makes cache bigger)
 tlmgr option -- autobackup 0
