@@ -2,8 +2,9 @@ language: generic
 
 dist: bionic
 
-## Uncomment the following lines if you use minted package or custom fonts
+## Uncomment the following lines if you use minted package or custom fonts or latex>dvips>ps2pdf
 #before_install:
+# - sudo apt-get install ghostscript
 # - sudo apt-get install python-pygments
 # - mkdir $HOME/.fonts
 # - cp -a $TRAVIS_BUILD_DIR/src/fonts/. $HOME/.fonts/
@@ -30,3 +31,8 @@ script:
 
   # You can also pass arguments to texliveonfly:
 #  - texliveonfly --arguments='-shell-escape' main.tex
+
+## Uncomment the following lines to see the packages installed in travis
+#after_script:
+#  - export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
+#  - tlmgr list --only-installed | grep -oP 'i \K.+?(?=:)'
