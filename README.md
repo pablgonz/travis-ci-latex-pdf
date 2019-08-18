@@ -231,7 +231,13 @@ This repo contains:
 * Commit and push, you can view your repositories at [travis-ci.com](https://travis-ci.com/).
 (Thanks to [@jason-neal](https://github.com/PHPirates/travis-ci-latex-pdf/pull/6) for improving this)
 * For deploying to GitHub releases, see the notes [below](#deploy).
-* If the build fails because some package is missing you have to add it manually in `texlive_packages`. This configuration uses the `texliveonfly` package which tries to download missing packages but sometimes the error message is non-standard and that fails. In that case, put the package you want to install in `texlive/texlive_packages`, by checking at https://www.ctan.org/pkg/some-package to see in which TeX Live package it is contained (which may be different than the LaTeX package name). If you find a package which is not automatically downloaded, it would be great if you could let us know by submitting an issue.
+* If the build fails because some package is missing you have to add it manually in `texlive_packages`. This configuration uses the `texliveonfly` package which tries to download missing packages but sometimes the error message is non-standard and that fails. 
+
+  In that case, put the package you want to install in `texlive/texlive_packages`, by checking at https://www.ctan.org/pkg/some-package to see in which TeX Live package it is contained (which may be different than the LaTeX package name). If you find a package which is not automatically downloaded, it would be great if you could let us know by submitting an issue.
+
+  You can find required LaTeX packages of your document (say main.tex) by installing the snapshot package and then running `pdflatex -draftmode -interaction=batchmode "\RequirePackage{snapshot}\input{main}"` (thanks to [Pablo Gonzalez](https://github.com/PHPirates/travis-ci-latex-pdf/pull/24#issuecomment-521780469) for finding this).
+   This will produce a file `snapshot.dep` with dependencies. Note this requires that you have all required packages installed on your system.
+   
 * If you use custom fonts, [read on](#texlive-custom-fonts).
 * Tip from [gvacaliuc](https://github.com/gvacaliuc/travis-ci-latex-pdf): In order to maintain the install scripts in a central repo and link to them, you could also just copy `.travis.yml` and replace
 ```yaml
@@ -322,10 +328,12 @@ reStructuredText:
 
 ## <a name="troubleshooting">Troubleshooting</a>
 
-If your build doesn't start you should first look at Travis (so on https://travis-ci.com/username/reponame) under More Options | Requests, it might for example be that the `.travis.yml` could not be parsed, for example because your indentation is wrong.
+* When trying to fix your `.travis.yml`, it may be helpful to trigger custom builds instead of creating a new commit every time, as explained in https://blog.travis-ci.com/2017-08-24-trigger-custom-build
+
+* If your build doesn't start you should first look at Travis (so on https://travis-ci.com/username/reponame) under More Options | Requests, it might for example be that the `.travis.yml` could not be parsed, for example because your indentation is wrong.
 You can also manually trigger a build there.
 
-If you do not understand why your build is failing, it may help to run the relevant commands on a local Ubuntu system, if you have one.
+* If you do not understand why your build is failing, it may help to run the relevant commands on a local Ubuntu system, if you have one.
 
 ## Notes
 * There are much more CI services than just Travis, for example CircleCI or SemaphoreCI and [much more](https://github.com/ligurio/awesome-ci). If you manage to use one of them, it would be great if you could report back!
