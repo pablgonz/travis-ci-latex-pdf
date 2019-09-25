@@ -94,7 +94,7 @@ Want this? Instructions [below](#tectonic-docker).
 
 Build time example file: 1-2 minutes
 
-Want this? Instructions [below](#tectonic).
+Want this? Instructions [below](#tectonic-miniconda).
 
 ## 3. Docker image with TeX Live
 
@@ -167,7 +167,7 @@ Want this? Instructions [below](#tinytex).
 * Have a look at the [Tips](#tips).
 * If your build doesn't start, see [Troubleshooting](#troubleshooting).
 
-## <a name="tectonic">Instructions for building with Miniconda and Tectonic</a>
+## <a name="tectonic-miniconda">Instructions for building with Miniconda and Tectonic</a>
 
 * Install the Travis GitHub App by going to the [Marketplace](https://github.com/marketplace/travis-ci), scroll down, select Open Source (also when you want to use private repos) and select 'Install it for free', then 'Complete order and begin installation'. 
 * Now you should be in Personal settings | Applications | Travis CI | Configure and you can allow access to repositories, either select repos or all repos.
