@@ -20,6 +20,7 @@ sudo echo "url = \"https://tectonic.newton.cx/bundles/tlextras-2018.1r0/bundle.t
 
 cd ${TRAVIS_BUILD_DIR}/src/
 tectonic --keep-intermediates --reruns 0 ./main.tex
-if [ -f "main.bcf" ]; then biber main; fi
+tectonic --keep-intermediates --reruns 0 ./biber-mwe.tex
+if [ -f "biber-mwe.bcf" ]; then biber biber-mwe; fi
 #tectonic --keep-intermediates ./main.tex
 #makeindex ./main.idx
