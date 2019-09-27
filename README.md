@@ -176,11 +176,12 @@ Want this? Instructions [below](#tinytex).
 * For deploying to GitHub releases, see the notes [below](#deploy).
 * Have a look at the [Tips](#tips).
 * If your build doesn't start, see [Troubleshooting](#troubleshooting).
+* If you get the error `This means that your biber (2.xx) and biblatex (3.yy) versions are incompatible` that means that Tectonic has a different biblatex version than the biber version specified in the config. To fix this, open your `.travis.yml` and change `biber==2.xx` to `biber==2.yy`, for example if biblatex 3.11 is present then you need to install biber 2.11. This trick works for any recent version of biblatex, as can be seen in the [biber docs](http://mirrors.ctan.org/biblio/biber/documentation/biber.pdf).
 
 ### <a name="biber">Separate instructions for adding biber to your Miniconda and Tectonic setup</a>
 
 These changes have already been added to the `.travis.yml`, but to be clear here are the separate instructions if you already have Miniconda and Tectonic running:
-* Install biber version 2.5 either from [sourceforge](https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber/2.5/binaries/), or with conda `conda install -c malramsay biber==2.5` 
+* Install the correct biber version (see above) either from [sourceforge](https://sourceforge.net/projects/biblatex-biber/files/biblatex-biber), or with conda `conda install -c malramsay biber==2.xx` 
 * Run tectonic once to create intermediate files, followed by biber, and finally complete compilation of the document with tectonic.
 
 ```shell
