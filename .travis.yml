@@ -17,14 +17,12 @@ cache:
   - "$HOME/.cache/Tectonic"
 script:
 - cd ./src/
-- tectonic --keep-intermediates --reruns 0 ./main.tex
-- if [ -f "main.bcf" ]; then biber main; fi
-- tectonic ./main.tex --print
+- tectonic --keep-intermediates --print ./git-info-2-mwe.tex
 - cd ../
 deploy:
   provider: releases
   api_key:
-    secure: Ex2czz8NuQUaEbCzbk7r18gi+1jGG7GdYjj+0Y96GQpk2T853oJiBIUpcnHARs/gS00fQds8cRRxFh2/r7srT71pyPJFZDcpWL24Iik4Da4oL2VbcSLL4rLRzrb1EK3KwNPai+MJtRrAq+klIXHH+vU2hfulcjRckEO93kWki/KoYq2UiaFucFwr5olj5nT7eFkjDaRSWGS0cQT7egqns7F5BUAFi/a6e30f3DAShV61o+gGSfnigpNVUdJcAeoIgmWNe4Pcv00D2XpX+o1IrZJ8bFzcyx/3qPiByAKfVHD8vNJU+ELd/O3OxFhfooH2DzxsJUnlqL4RtJtxzM/hL0fh5X8d2RyfoRjMgnrAHv3Gtz3pcWnNfkAZAN+JYDC0O83/z8M2mjQyx3GmxcrLchEPwUmyyyjHSOKB5D80QvJiGDhHXh5xRE2DddHegvHCvB5YmM9hoev29aulv4tju9zDGMivV/5fGh9NQ4Ayw+yKIaKTMxNr1MqpWOMO+Ikr//ZcmmhLqTri2w3UmyYzaOpIEZySe9EVpEPZkwEadw0T8lx+9CAI8QfqZ5zvTD/kSDFsiemROBZvAso7Fi3NyzTDN1nmFtXExALBZ6KE6cxXp6WdazS5o+8IdYjWKunWrTImLXlIVzP+69Sc0RJ0HFlbmPqggBoT7tupsHj+cKQ=
+    secure: GME/XOMyuXmenPgM1l1lKfZuIbagmEtRSPULXhqu2NbQoqgDlAreIA6NkQv0KiU+e+MBb1XHHnh25X92xUQ1xr8lb52GHhgdCsc4Le17ymqxjPbPb446En+NGpd3Kia4cie4sDfumDsDxiHtVB9qCtUF78ja+PmFYgZkTOJC2QMOVF0EM9KLR5On9d+sklE1yMXHe3Ex4q71YKg7XechbEU85QqYZzTkgr5CZd1XKWA3vN0BrRJCDXR4ivsMmVl4osI6GkSrm86tr++rK7Eg4wZHavtRDeWwU5m0/9KYxeCNANfjjPcKMZBhl05Q3EVEeqZ2dUS15BJoXM5Rs7MznnWidPw09dJcHTGXTwQ6LDfdVYRfoWwrN4/ERIWMKH9+T9As1ydpIta/HLcOwb8t5mLiP61njBd4leOPyWreg8BOLskFLViC3M0naZIYtdSMfV/+F8+OCun5IeytDeclvLu6HAv31LLlWhSh1tksoPY9cg26Oo9a6/FuY+Ighavo8D2fxbv/Xulv1pCdROr6V8exunAIPIvDVHG4mTPVYIXLIdtmdJn8xdcPCzd22dOgiD2Bqxfd3ZmZCTFgF2voarYbrIRMfXBnlAhzRHNQNTpDiU49swRYP1oXlXZXG+0TXo7goMGhjq2BX3oT1K77oqP/i5+Z45uk9AfI+4hALAs=
   file:
     - ./src/git-info-2-mwe.pdf
   skip_cleanup: true
