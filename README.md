@@ -327,6 +327,18 @@ reStructuredText:
     :alt: Build Status
 ```
 * You may want to edit settings on Travis to not build both on pull request and branch updates, and cancel running jobs if new ones are pushed.
+* You can automatically add a footnote, tag and/or git hash to the document by adding the following lines to your `.travis.yml`:
+```
+before_install:
+  - chmod +x .travis/git-info-2.sh
+  - ".travis/git-info-2.sh"
+```
+Also copy the [`.travis/git-info-2.sh`](.travis/git-info-2.sh) to your repository.
+Then in your LaTeX file add `\usepackage{gitinfo2}`.
+
+Now you can for example get the hash of the commit with `\gitHash`.
+An example can be found in [`src/git-info-2-mwe.tex`](src/git-info-2-mwe.tex).
+For more info, see the documentation at http://mirrors.ctan.org/macros/latex/contrib/gitinfo2/gitinfo2.pdf
 
 ## <a name="troubleshooting">Troubleshooting</a>
 
