@@ -1,54 +1,33 @@
-# We test each method for building LaTeX in a separate job.
 language: generic
-
-# Seems to be needed for texlive-docker-test
-dist: xenial
-
-# This is required to test texlive-docker because it searches for config options in this file
-tex-config:
-  - build-pattern=src/main.tex,src/mwe.tex
-  - packages=xkeyval, collection-latex, collection-langeuropean, exam, amsmath, amscls, mathtools, thmtools, stmaryrd, xcolor, pdfpages, pgf, cancel, hyperref, pgfplots, listings, scalerel, stackengine, etoolbox, listofitems, marvosym, amsfonts, opensans, slantsc, fancyhdr, ulem, algorithms, algorithmicx, float, booktabs, enumitem, polynom, fancyvrb, makecmds, multirow, chngcntr, fvextra, upquote, lineno, ifplatform, xstring, framed, caption, collection-fontsrecommended, minted, pgfgantt, geometry, beamer, translator, environ, trimspaces, imakeidx, graphics, tools, oberdiek
-
-jobs:
-  include:
-    # Each - starts a separate job
-    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/tectonic-docker-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-docker-test.sh
-      name: "Run tectonic-docker-test"
-    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh && $TRAVIS_BUILD_DIR/test/tectonic-miniconda-test.sh
-      name: "Run tectonic-miniconda-test"
-    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-test.sh
-      name: "Run texlive-docker-test"
-    - script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh && $TRAVIS_BUILD_DIR/test/texlive-docker-texliveonfly-test.sh
-      name: "Run texlive-docker-texliveonfly"
-    - before_install:
-        - sudo apt-get install python-pygments
-        - mkdir $HOME/.fonts
-        - cp -a $TRAVIS_BUILD_DIR/src/fonts/. $HOME/.fonts/
-        - fc-cache -f -v
-      script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-test.sh && $TRAVIS_BUILD_DIR/test/texlive-test.sh
-      after_script:
-        - export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
-        - tlmgr list --only-installed | grep -oP 'i \K.+?(?=:)'
-      name: "Run texlive-test"
+before_install:
+- sudo apt-get install texlive-binaries
+- chmod +x .travis/git-info-2.sh
+- ".travis/git-info-2.sh"
+install:
+- export PATH="$HOME/miniconda/bin:$PATH"
+- if ! command -v conda > /dev/null; then wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
+  -O miniconda.sh; bash miniconda.sh -b -p $HOME/miniconda -u; conda config --add
+  channels conda-forge; conda config --set always_yes yes; conda install tectonic==0.1.11;
+  fi
+- conda install -c malramsay biber==2.11 --yes
+- conda info -a
 cache:
   directories:
-    - /tmp/texlive
-    - $HOME/.texlive
-    - $HOME/miniconda
-    - $HOME/.cache/Tectonic
-    
-# Disable this test because it's broken and nobody uses it anyway
-#    - stage: tinytex
-#      language: r
-#      sudo: true
-#      latex: false
-#      pandoc: false
-#      warnings_are_errors: false
-#      install: echo "The install step is required but does nothing now."
-#      script: chmod +x $TRAVIS_BUILD_DIR/test/tinytex-test.sh && $TRAVIS_BUILD_DIR/test/tinytex-test.sh
-#      cache:
-#        directories:
-#          - packages
-#          - /tmp/texlive
-#          - $HOME/.texlive
-#          - $HOME/.TinyTex
+  - "$HOME/miniconda"
+  - "$HOME/.cache/Tectonic"
+script:
+- cd ./src/
+- tectonic --keep-intermediates --reruns 0 ./main.tex
+- if [ -f "main.bcf" ]; then biber main; fi
+- tectonic ./main.tex --print
+- cd ../
+deploy:
+  provider: releases
+  api_key:
+    secure: Ex2czz8NuQUaEbCzbk7r18gi+1jGG7GdYjj+0Y96GQpk2T853oJiBIUpcnHARs/gS00fQds8cRRxFh2/r7srT71pyPJFZDcpWL24Iik4Da4oL2VbcSLL4rLRzrb1EK3KwNPai+MJtRrAq+klIXHH+vU2hfulcjRckEO93kWki/KoYq2UiaFucFwr5olj5nT7eFkjDaRSWGS0cQT7egqns7F5BUAFi/a6e30f3DAShV61o+gGSfnigpNVUdJcAeoIgmWNe4Pcv00D2XpX+o1IrZJ8bFzcyx/3qPiByAKfVHD8vNJU+ELd/O3OxFhfooH2DzxsJUnlqL4RtJtxzM/hL0fh5X8d2RyfoRjMgnrAHv3Gtz3pcWnNfkAZAN+JYDC0O83/z8M2mjQyx3GmxcrLchEPwUmyyyjHSOKB5D80QvJiGDhHXh5xRE2DddHegvHCvB5YmM9hoev29aulv4tju9zDGMivV/5fGh9NQ4Ayw+yKIaKTMxNr1MqpWOMO+Ikr//ZcmmhLqTri2w3UmyYzaOpIEZySe9EVpEPZkwEadw0T8lx+9CAI8QfqZ5zvTD/kSDFsiemROBZvAso7Fi3NyzTDN1nmFtXExALBZ6KE6cxXp6WdazS5o+8IdYjWKunWrTImLXlIVzP+69Sc0RJ0HFlbmPqggBoT7tupsHj+cKQ=
+  file:
+    - ./src/git-info-2-mwe.pdf
+  skip_cleanup: true
+  on:
+    repo: PHPirates/travis-ci-latex-pdf
+    branch: gitinfo2
