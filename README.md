@@ -338,7 +338,8 @@ Then in your LaTeX file add `\usepackage{gitinfo2}`.
 
 Now you can for example get the hash of the commit with `\gitHash`.
 An example can be found in [`src/git-info-2-mwe.tex`](src/git-info-2-mwe.tex).
-For more info, see the documentation at http://mirrors.ctan.org/macros/latex/contrib/gitinfo2/gitinfo2.pdf
+For more info, see the documentation at http://mirrors.ctan.org/macros/latex/contrib/gitinfo2/gitinfo2.pdf 
+(Thanks to [@shabbychef](https://github.com/Strauman/travis-latexbuild/issues/27) for mentioning this)
 
 ## <a name="troubleshooting">Troubleshooting</a>
 
