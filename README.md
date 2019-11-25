@@ -212,6 +212,8 @@ Some documentation can be found at https://tex.stackexchange.com/a/463842/98850 
 
 The only change in the instructions is that you use the docker image as specified in [`texlive-docker-texliveonfly/.travis.yml`](texlive-docker-texliveonfly/.travis.yml), and that you don't need to specify packages manually in that file.
 
+The docker source file of this image can be found in https://github.com/Strauman/travis-latexbuild/tree/master/docker/texliveonfly
+
 ## <a name="pdflatex">Instructions for building with pdflatex/lualatex/latexmk/xelatex/texliveonfly/etc and TeX Live</a>
 
 If for some reason you prefer the pdflatex (or any other) engine with the TeX Live distribution, read on.
