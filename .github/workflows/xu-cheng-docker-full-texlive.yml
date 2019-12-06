@@ -8,20 +8,18 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Set up Git repository
-      uses: actions/checkout@v1
-    - name: Github Action for LaTeX
-      uses: xu-cheng/latex-action@1.2.0
-      with:
-        # The root LaTeX file to be compiled
-        root_file: main.tex
-        # The working directory for the LaTeX engine
-        working_directory: src
-        # The LaTeX engine to be invoked
-        compiler: # optional, default is latexmk
-        # Extra arguments to be passed to the LaTeX engine
-        args: # optional, default is -pdf -file-line-error -interaction=nonstopmode
-        # [Deprecated] Install extra packages by tlmgr
-        extra_packages: # optional
-        # Install extra packages by apk
-        extra_system_packages: # optional
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Compile LaTeX documents
+        uses: xu-cheng/latex-action@1.2.0
+        with:
+          # The root LaTeX file to be compiled
+          root_file: main.tex
+          # The working directory for the LaTeX engine
+          working_directory: test/
+          # The LaTeX engine to be invoked
+          compiler: # optional, default is latexmk
+          # Extra arguments to be passed to the LaTeX engine
+          args: # optional, default is -pdf -file-line-error -interaction=nonstopmode
+          # Install extra packages by apk
+          extra_system_packages: # optional
