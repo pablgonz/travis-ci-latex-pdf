@@ -12,9 +12,9 @@ jobs:
       uses: xu-cheng/latex-action@1.2.0
       with:
         # The root LaTeX file to be compiled
-        root_file: src/main.tex
+        root_file: main.tex
         # The working directory for the LaTeX engine
-        working_directory: src
+        working_directory: travis-ci-latex-pdf/src
         # The LaTeX engine to be invoked
         compiler: # optional, default is latexmk
         # Extra arguments to be passed to the LaTeX engine
