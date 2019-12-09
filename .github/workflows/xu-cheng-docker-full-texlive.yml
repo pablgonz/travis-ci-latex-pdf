@@ -18,7 +18,7 @@ jobs:
           # The working directory for the LaTeX engine
           working_directory: src/
           # The LaTeX engine to be invoked
-#          compiler: # optional, default is latexmk
+          compiler: # optional, default is latexmk
           # Extra arguments to be passed to the LaTeX engine
 #          args: # optional, default is -pdf -file-line-error -interaction=nonstopmode
           # Install extra packages by apk
