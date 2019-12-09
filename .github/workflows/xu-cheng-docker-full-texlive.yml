@@ -10,13 +10,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
-      - name: Compile LaTeX documents
+      - name: Compile main.tex
         uses: xu-cheng/latex-action@1.2.0
         with:
           # The root LaTeX file to be compiled
           root_file: main.tex
           # The working directory for the LaTeX engine
-          working_directory: test/
+          working_directory: src/
           # The LaTeX engine to be invoked
 #          compiler: # optional, default is latexmk
           # Extra arguments to be passed to the LaTeX engine
