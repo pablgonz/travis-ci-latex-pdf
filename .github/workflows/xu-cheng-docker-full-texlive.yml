@@ -34,17 +34,26 @@ jobs:
           root_file: minted.tex
           working_directory: src/
           args: -pdf -file-line-error -interaction=nonstopmode -shell-escape
-      - run: mkdir $HOME/.fonts
-      - run: cp -a src/fonts/. $HOME/.fonts/
-      - run: fc-cache -f -v
-      - name: Compile fonts.tex
-        uses: xu-cheng/latex-action@master
-        with:
-          root_file: fonts.tex
-          working_directory: src/
-          args: -xelatex -file-line-error -interaction=nonstopmode
-      - name: Upload pdfs
+#      - name: Compile fonts.tex
+#        uses: xu-cheng/latex-action@master
+#        with:
+#          root_file: fonts.tex
+#          working_directory: src/
+#          args: -xelatex -file-line-error -interaction=nonstopmode
+
+        # Wildcards are not supported yet: https://github.com/actions/upload-artifact/issues/11
+      - name: Upload main.pdf
         uses: actions/upload-artifact@v1
         with:
           name: main.pdf
           path: src/main.pdf
+      - name: Upload biber-mwe.pdf
+        uses: actions/upload-artifact@v1
+        with:
+          name: biber-mwe.pdf
+          path: src/biber-mwe.pdf
+      - name: Upload minted.pdf
+        uses: actions/upload-artifact@v1
+        with:
+          name: minted.pdf
+          path: src/minted.pdf
