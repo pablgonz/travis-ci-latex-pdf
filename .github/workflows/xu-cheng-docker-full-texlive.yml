@@ -11,7 +11,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v1
       - name: Compile main.tex
-        uses: xu-cheng/latex-action@1.2.0
+        uses: xu-cheng/latex-action@master
         with:
           # The root LaTeX file to be compiled
           root_file: main.tex
@@ -23,3 +23,20 @@ jobs:
 #          args: # optional, default is -pdf -file-line-error -interaction=nonstopmode
           # Install extra packages by apk
 #          extra_system_packages: # optional
+      - name: Compile biber-mwe.tex
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: biber-mwe.tex
+          working_directory: src/
+      - name: Compile fonts.tex
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: fonts.tex
+          working_directory: src/
+          args: -xelatex -file-line-error -interaction=nonstopmode
+      - name: Compile minted.tex
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: minted.tex
+          working_directory: src/
+          args: -pdf -file-line-error -interaction=nonstopmode -shell-escape
