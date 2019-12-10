@@ -1,6 +1,7 @@
 ### LaTeX + Git + Travis &rightarrow; release pdf
 
 [![Build Status](https://travis-ci.org/PHPirates/travis-ci-latex-pdf.svg?branch=master)](https://travis-ci.org/PHPirates/travis-ci-latex-pdf)
+[![Gitter](https://badges.gitter.im/travis-latexbuild/community.svg)](https://gitter.im/travis-latexbuild/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 Write LaTeX, push to git, let Travis automatically build your file and release a pdf automatically to GitHub releases when the commit was tagged.
 
