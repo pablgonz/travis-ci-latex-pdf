@@ -4,10 +4,15 @@
 \setsansfont{Proxima Nova}
 \setmonofont{Ubuntu Mono}
 \newfontfamily\warwickfont[
+Path=fonts/ttf/,
+UprightFont = *-Regular,
+BoldFont = *-Bold,
+ItalicFont = *-Italic,
 Scale=MatchLowercase
 ]{Avenir Next}
 
 % Compile using XeLaTeX or LuaLaTeX
+% Document is like fonts.tex but using fonts from a local path
 \begin{document}
     \textbf{Test} \textit{loading} \verb|fonts|.
 \end{document}
