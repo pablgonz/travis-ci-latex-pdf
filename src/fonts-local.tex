@@ -1,14 +1,25 @@
 \documentclass[11pt]{article}
 
 \usepackage{fontspec}
-\setsansfont{Proxima Nova}
-\setmonofont{Ubuntu Mono}
+\setsansfont[
+    Path=fonts/otf-without-spaces/,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Regular-Italic
+]{Proxima Nova}
+\setmonofont[
+    Path=fonts/ttf/,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic
+]{Ubuntu Mono}
+
 \newfontfamily\warwickfont[
-Path=fonts/ttf/,
-UprightFont = *-Regular,
-BoldFont = *-Bold,
-ItalicFont = *-Italic,
-Scale=MatchLowercase
+    Path=fonts/ttf/,
+    UprightFont = *-Regular,
+    BoldFont = *-Bold,
+    ItalicFont = *-Italic,
+    Scale=MatchLowercase
 ]{Avenir Next}
 
 % Compile using XeLaTeX or LuaLaTeX
