@@ -36,6 +36,82 @@ If you are looking for instructions to build LaTeX on GitLab CI, have a look [be
 - [Contributing](#contributing)
 - [GitLab CI](#gitlab)
 
+# GitHub Actions
+
+In 2019 GitHub introduced GitHub Actions, which is essentially an alternative to Travis.
+
+- GitHub Actions is integrated into GitHub so you do not have to leave GitHub to see build logs
+- GitHub Actions can also publish to GitHub releases, and upload artifacts
+- GitHub Actions also has a caching mechanism
+- GitHub Actions has a marketplace from which it is very easy to copy yaml configuration files
+
+To use it:
+* Go the Actions tab in your repository
+* Click on Set up this workflow
+* Search in the Marketplace for LaTeX
+* Choose an action, see below for an overview.
+* Copy the yaml shown to _under_ 'steps' in the file shown
+* Commit
+
+For more information, see https://help.github.com/en/actions/automating-your-workflow-with-github-actions
+
+## Docker image with full TeX Live
+
+Currently we know the following Actions.
+
+### Github Action for LaTeX by xu-cheng
+
+Advantages:
+* You can specify file to compile, working directory, compiler, compiler arguments and extra packages to install in the alpine image used
+* Supports minted, biber, custom fonts (using local paths)
+
+Disadvantages:
+* It downloads a full TeX Live image on every build, which takes almost three minutes
+
+Example in this repo: [xu-cheng-docker-full-texlive.yml](.github/workflows/xu-cheng-docker-full-texlive.yml)
+
+### LaTeX compilation by dante-ev
+
+This is a fork of Github Action for LaTeX by xu-cheng, of which the only changes are now also in the original Action by xu-cheng.
+
+### Latex-multicompiler by Jatus93
+
+Fork of 'LaTeX compilation by dante-ev' but reads the file to compile from a `.fileToCompile` file in your repository so this does not seem to have any advantages.
+
+### Github Actions for build LaTeX and release pdf by MaineK00n
+
+Uses https://github.com/Paperist/docker-alpine-texlive-ja which installs the TeX Live package `collection-langjapanese` by default and otherwise does not seem to have any advantages (or documentation at all).
+
+
+## Docker image with Tectonic
+
+The following Actions use Tectonic, which means they have the advantages and disadvantages of Tectonic as described [below](#tectonic)
+
+### Compile LaTeX by vinay0410
+
+[Forked](https://github.com/vinay0410/tectonic-docker) from https://github.com/WtfJoke/tectonic-docker with no significant changes.
+
+Advantages:
+* You can specify the path to the file to compile
+* Supports biber
+
+Disadvantages:
+
+<!-- todo try this -->
+
+## TeX Live
+
+### paper-maker by andycasey
+<!-- todo check this -->
+
+##
+
+### Uberblatt by ottojo
+<!-- todo check this -->
+
+## LaTeX linting
+
+### LaTeX linter (chktex) by j2kun
 
 # Choose your build method
 
