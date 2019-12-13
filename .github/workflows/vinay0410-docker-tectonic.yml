@@ -16,3 +16,21 @@ jobs:
         with:
           # Path of Tex File
           tex_path: src/main.tex
+      - name: Compile biber-mwe.tex
+        uses: vinay0410/tectonic-action@v1.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tex_path: src/biber-mwe.tex
+      - name: Compile minted.tex
+        uses: vinay0410/tectonic-action@v1.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tex_path: src/minted.tex
+      - name: Compile fonts-local.tex
+        uses: vinay0410/tectonic-action@v1.1.1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tex_path: src/fonts-local.tex

@@ -71,6 +71,8 @@ Disadvantages:
 
 Example in this repo: [xu-cheng-docker-full-texlive.yml](.github/workflows/xu-cheng-docker-full-texlive.yml)
 
+Build time example files: 3-4 min.
+
 ### LaTeX compilation by dante-ev
 
 This is a fork of Github Action for LaTeX by xu-cheng, of which the only changes are now also in the original Action by xu-cheng.
@@ -97,8 +99,11 @@ Advantages:
 * Supports biber
 
 Disadvantages:
+* Packages are not cached, downloading them all every time costs time
 
-<!-- todo try this -->
+Example in this repo: [vinay04010-docker-tectonic.yml](.github/workflows/vinay04010-docker-tectonic.yml)
+
+Build time example files: 4-5 min.
 
 ## TeX Live
 
