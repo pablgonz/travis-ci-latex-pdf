@@ -89,7 +89,7 @@ The following Actions use Tectonic, which means they have the advantages and dis
 
 ### Compile LaTeX by vinay0410
 
-[Forked](https://github.com/vinay0410/tectonic-docker) from https://github.com/WtfJoke/tectonic-docker with no significant changes.
+Uses a [fork](https://github.com/vinay0410/tectonic-docker) from https://github.com/WtfJoke/tectonic-docker with no significant changes.
 
 Advantages:
 * You can specify the path to the file to compile

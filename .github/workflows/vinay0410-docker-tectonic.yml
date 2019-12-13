@@ -1,0 +1,16 @@
+name: Compile LaTeX by vinay0410
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Compile main.tex
+        uses: vinay0410/tectonic-action@v1.1.1
+        with:
+          # Path of Tex File
+          tex_path: src/main.tex
