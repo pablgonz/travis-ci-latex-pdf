@@ -1,0 +1,22 @@
+name: paper-maker by andycasey
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+    env:
+      steps:
+        - uses: actions/checkout@v1
+        - name: Install texlive
+          run: |
+            sudo apt-get install texlive-publishers \
+                                 texlive-latex-recommended \
+                                 texlive-latex-extra \
+                                 texlive-fonts-recommended \
+                                 texlive-fonts-extra
+        - name: Build paper
+          run: |
+            cd src
+            pdflatex main.tex

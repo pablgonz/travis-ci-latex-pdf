@@ -108,7 +108,19 @@ Build time example files: 4-5 min.
 ## TeX Live
 
 ### paper-maker by andycasey
-<!-- todo check this -->
+
+This actions installs a default set of texlive packages from Ubuntu, at the moment `texlive-publishers texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra`.
+
+Then it compiles using pdflatex and bibtex, using `-shell-escape`.
+
+By default, you don't specify any options, but for customizations you can copy the source yaml from https://github.com/andycasey/paper-maker/blob/master/action.yml and modify it.
+
+Advantages:
+* It is simple and might be close to what you would do on Ubuntu yourself, if you would install TeX Live from Ubuntu packages.
+
+Disadvantages:
+* Installing TeX Live using the Ubuntu pacakges is not something that is recommended, because these packages can be older.
+
 
 ##
 
