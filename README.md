@@ -106,6 +106,7 @@ Advantages:
 
 Disadvantages:
 * Packages are not cached, downloading them all every time costs time
+* No way to disable the automatic upload of pdfs to the master branch
 
 Example in this repo: [vinay04010-docker-tectonic.yml](.github/workflows/vinay04010-docker-tectonic.yml)
 
