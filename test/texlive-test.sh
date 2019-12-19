@@ -12,4 +12,5 @@ texliveonfly ./biber-mwe.tex
 
 texliveonfly fonts.tex --compiler=lualatex
 
-texliveonfly --arguments='-shell-escape' ./minted.tex
+# Works on local Ubuntu 18 but not on Travis
+#texliveonfly --arguments='-shell-escape' ./minted.tex
