@@ -1,0 +1,64 @@
+name: Github Action for LaTeX by xu-cheng
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Compile main.tex
+        uses: xu-cheng/latex-action@master
+        with:
+          # The root LaTeX file to be compiled
+          root_file: main.tex
+          # The working directory for the LaTeX engine
+          working_directory: src/
+          # The LaTeX engine to be invoked
+          compiler: # optional, default is latexmk
+          # Extra arguments to be passed to the LaTeX engine
+          args: # optional, default is -pdf -file-line-error -interaction=nonstopmode
+          # Install extra packages by apk
+#          extra_system_packages: # optional
+      - name: Compile biber-mwe.tex
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: biber-mwe.tex
+          working_directory: src/
+      - name: Compile minted.tex
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: minted.tex
+          working_directory: src/
+          args: -pdf -file-line-error -interaction=nonstopmode -shell-escape
+      - name: Compile fonts-local.tex
+        uses: xu-cheng/latex-action@master
+        with:
+          root_file: fonts-local.tex
+          working_directory: src/
+          args: -xelatex -file-line-error -interaction=nonstopmode
+
+        # Wildcards are not supported yet: https://github.com/actions/upload-artifact/issues/11
+      - name: Upload main.pdf
+        uses: actions/upload-artifact@v1
+        with:
+          name: main
+          path: src/main.pdf
+      - name: Upload biber-mwe.pdf
+        uses: actions/upload-artifact@v1
+        with:
+          name: biber-mwe
+          path: src/biber-mwe.pdf
+      - name: Upload minted.pdf
+        uses: actions/upload-artifact@v1
+        with:
+          name: minted
+          path: src/minted.pdf
+      - name: Upload fonts-local.pdf
+        uses: actions/upload-artifact@v1
+        with:
+          name: fonts-local
+          path: src/fonts-local.pdf

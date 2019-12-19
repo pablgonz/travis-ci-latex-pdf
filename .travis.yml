@@ -28,7 +28,7 @@ jobs:
       script: travis_retry chmod +x $TRAVIS_BUILD_DIR/test/texlive-test.sh && $TRAVIS_BUILD_DIR/test/texlive-test.sh
       after_script:
         - export PATH=/tmp/texlive/bin/x86_64-linux:$PATH
-        - tlmgr list --only-installed | grep -oP 'i \K.+?(?=:)'
+        - tlmgr list --only-installed  | grep -oP 'i \K.+?(?=:)'
       name: "Run texlive-test"
 cache:
   directories:

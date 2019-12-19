@@ -2,6 +2,7 @@
 
 [![Build Status](https://travis-ci.org/PHPirates/travis-ci-latex-pdf.svg?branch=master)](https://travis-ci.org/PHPirates/travis-ci-latex-pdf)
 [![Gitter](https://badges.gitter.im/travis-latexbuild/community.svg)](https://gitter.im/travis-latexbuild/community?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+![](https://github.com/PHPirates/travis-ci-latex-pdf/workflows/Github%20Action%20for%20LaTeX%20by%20xu-cheng/badge.svg?branch=github-actions)
 
 Write LaTeX, push to git, let Travis automatically build your file and release a pdf automatically to GitHub releases when the commit was tagged.
 
@@ -13,6 +14,7 @@ If you are looking for instructions to build LaTeX on GitLab CI, have a look [be
 
 **Table of Contents**  
 
+- [Github Actions](#github-actions)
 - [Choose your build method](#choose-your-build-method)
   - [Tectonic](#tectonic)
   - [1. Docker image with Tectonic](#1-docker-image-with-tectonic)
@@ -37,6 +39,103 @@ If you are looking for instructions to build LaTeX on GitLab CI, have a look [be
 - [Contributing](#contributing)
 - [GitLab CI](#gitlab)
 
+# GitHub Actions
+
+In 2019 GitHub introduced GitHub Actions, which is essentially an alternative to Travis.
+
+- GitHub Actions is integrated into GitHub so you do not have to leave GitHub to see build logs
+- GitHub Actions can also publish to GitHub releases, and upload artifacts
+- GitHub Actions also has a caching mechanism
+- GitHub Actions has a marketplace from which it is very easy to copy yaml configuration files
+
+To use it:
+* Go the Actions tab in your repository
+* Click on Set up this workflow
+* Search in the Marketplace for LaTeX
+* Choose an action, see below for an overview.
+* Copy the yaml shown to _under_ 'steps' in the file shown
+* Commit
+
+For more information, see https://help.github.com/en/actions/automating-your-workflow-with-github-actions
+
+## Docker image with full TeX Live
+
+Currently we know the following Actions.
+
+### Github Action for LaTeX by xu-cheng
+
+Advantages:
+* You can specify file to compile, working directory, compiler, compiler arguments and extra packages to install in the alpine image used
+* Supports minted, biber, custom fonts (using local paths)
+
+Disadvantages:
+* It downloads a full TeX Live image on every build, which takes almost three minutes
+
+Example in this repo: [xu-cheng-docker-full-texlive.yml](.github/workflows/xu-cheng-docker-full-texlive.yml)
+
+Build time example files: 3-4 min.
+
+### LaTeX compilation by dante-ev
+
+This is a fork of Github Action for LaTeX by xu-cheng, of which the only changes are now also in the original Action by xu-cheng.
+
+### Latex-multicompiler by Jatus93
+
+Fork of 'LaTeX compilation by dante-ev' but reads the file to compile from a `.fileToCompile` file in your repository so this does not seem to have any advantages.
+
+### Github Actions for build LaTeX and release pdf by MaineK00n
+
+Uses https://github.com/Paperist/docker-alpine-texlive-ja which installs the TeX Live package `collection-langjapanese` by default and otherwise does not seem to have any advantages (or documentation at all).
+
+### Uberblatt by ottojo
+
+debian-based Docker image with a full texlive installed using the debian package.
+Includes pygments and pandoc, for source see https://hub.docker.com/r/aergus/latex/dockerfile.
+No known advantages currently.
+
+## Docker image with Tectonic
+
+The following Actions use Tectonic, which means they have the advantages and disadvantages of Tectonic as described [below](#tectonic)
+
+### Compile LaTeX by vinay0410
+
+Uses a [fork](https://github.com/vinay0410/tectonic-docker) from https://github.com/WtfJoke/tectonic-docker with no significant changes.
+
+Advantages:
+* You can specify the path to the file to compile
+* Supports biber
+
+Disadvantages:
+* Packages are not cached, downloading them all every time costs time
+* No way to disable the automatic upload of pdfs to the master branch
+
+Example in this repo: [vinay04010-docker-tectonic.yml](.github/workflows/vinay04010-docker-tectonic.yml)
+
+Build time example files: 4-5 min.
+
+## TeX Live
+
+### paper-maker by andycasey using Ubuntu texlive packages
+
+This actions installs a default set of texlive packages from Ubuntu, at the moment `texlive-publishers texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra`.
+
+Then it compiles using pdflatex and bibtex, using `-shell-escape`.
+
+By default, you don't specify any options, but for customizations you can copy the source yaml from https://github.com/andycasey/paper-maker/blob/master/action.yml and modify it.
+
+Advantages:
+* It is simple and might be close to what you would do on Ubuntu yourself, if you would install TeX Live from Ubuntu packages.
+
+Disadvantages:
+* You have to specify all the packages you want manually.
+* Installing TeX Live using the Ubuntu packages is not something that is recommended, because these packages can be older.
+
+Because it would be so much work figuring out what packages are needed, especially when TeX Live was installed using the Ubuntu packages, no example file is provided with this repository.
+
+
+## LaTeX linting
+
+### LaTeX linter (chktex) by j2kun
 
 # Choose your build method
 
