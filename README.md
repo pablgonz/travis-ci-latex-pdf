@@ -13,6 +13,7 @@ If you are looking for instructions to build LaTeX on GitLab CI, have a look [be
 
 **Table of Contents**  
 
+- [Github Actions](#github-actions)
 - [Choose your build method](#choose-your-build-method)
   - [Tectonic](#tectonic)
   - [1. Docker image with Tectonic](#1-docker-image-with-tectonic)
@@ -85,6 +86,11 @@ Fork of 'LaTeX compilation by dante-ev' but reads the file to compile from a `.f
 
 Uses https://github.com/Paperist/docker-alpine-texlive-ja which installs the TeX Live package `collection-langjapanese` by default and otherwise does not seem to have any advantages (or documentation at all).
 
+### Uberblatt by ottojo
+
+debian-based Docker image with a full texlive installed using the debian package.
+Includes pygments and pandoc, for source see https://hub.docker.com/r/aergus/latex/dockerfile.
+No known advantages currently.
 
 ## Docker image with Tectonic
 
@@ -107,7 +113,7 @@ Build time example files: 4-5 min.
 
 ## TeX Live
 
-### paper-maker by andycasey
+### paper-maker by andycasey using Ubuntu texlive packages
 
 This actions installs a default set of texlive packages from Ubuntu, at the moment `texlive-publishers texlive-latex-recommended texlive-latex-extra texlive-fonts-recommended texlive-fonts-extra`.
 
@@ -119,13 +125,11 @@ Advantages:
 * It is simple and might be close to what you would do on Ubuntu yourself, if you would install TeX Live from Ubuntu packages.
 
 Disadvantages:
-* Installing TeX Live using the Ubuntu pacakges is not something that is recommended, because these packages can be older.
+* You have to specify all the packages you want manually.
+* Installing TeX Live using the Ubuntu packages is not something that is recommended, because these packages can be older.
 
+Because it would be so much work figuring out what packages are needed, especially when TeX Live was installed using the Ubuntu packages, no example file is provided with this repository.
 
-##
-
-### Uberblatt by ottojo
-<!-- todo check this -->
 
 ## LaTeX linting
 
