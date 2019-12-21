@@ -12,4 +12,5 @@ tex-config:
   - packages=texliveonfly, latexmk, collection-langeuropean, collection-fontsrecommended, luaotfload, minted, fvextra, upquote, lineno, xstring, framed, caption
 
 script:
+  - docker login -u ${GH_REGISTRY_USERNAME} -p ${GH_REGISTRY_TOKEN} docker.pkg.github.com
   - docker run --mount src=$TRAVIS_BUILD_DIR/,target=/repo,type=bind docker.pkg.github.com/strauman/travis-latexbuild/texlive-latexbuild:texliveonfly-2019
