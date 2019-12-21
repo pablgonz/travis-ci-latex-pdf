@@ -315,6 +315,21 @@ The only change in the instructions is that you use the docker image as specifie
 
 The docker source file of this image can be found in https://github.com/Strauman/travis-latexbuild/tree/master/docker/texliveonfly
 
+#### Github Package Registry
+
+Instead of downloading from Docker Hub, you can also download the image from the Github Package Registry.
+You can see it at https://github.com/Strauman/travis-latexbuild/packages/92067?version=texliveonfly-2019
+
+This requires you to upload your username and a github token as Travis environment variables.
+
+Just replace the `script:` block with
+
+```yml
+script:
+  - docker login -u $GH_REGISTRY_USERNAME -p $GH_REGISTRY_TOKEN docker.pkg.github.com
+  - docker run --mount src=$TRAVIS_BUILD_DIR/,target=/repo,type=bind docker.pkg.github.com/strauman/travis-latexbuild/texlive-latexbuild:texliveonfly-2019
+```
+
 ## <a name="pdflatex">Instructions for building with pdflatex/lualatex/latexmk/xelatex/texliveonfly/etc and TeX Live</a>
 
 If for some reason you prefer the pdflatex (or any other) engine with the TeX Live distribution, read on.

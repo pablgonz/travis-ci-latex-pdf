@@ -26,6 +26,8 @@ src/*.synctex.gz
 src/*.toc
 src/*.upa
 src/*doctest.sage
+src/*.idx
+*.log
 
 # Generated files by SageTeX
 !auxil/*.sagetex.scmd
