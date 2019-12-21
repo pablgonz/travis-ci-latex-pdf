@@ -8,10 +8,9 @@ tex-config:
   - push-type=none
   - build-pattern=src/main.tex,src/mwe.tex
   #- latexmk-flags=-dvi -f
+  # Specify any packages to install that texliveonfly did not catch, and add it to the list at https://tex.stackexchange.com/a/463842/98850
   # Check at https://www.ctan.org/pkg/package-name in which TeX Live package a LaTeX package is contained.
-  - packages=texliveonfly, latexmk, collection-langeuropean, collection-fontsrecommended, luaotfload, minted, fvextra, upquote, lineno, xstring, framed, caption
+  - packages=collection-langeuropean
 
 script:
-  # This requires uploading username and a token as Travis environment variables
-  - docker login -u $GH_REGISTRY_USERNAME -p $GH_REGISTRY_TOKEN docker.pkg.github.com
-  - docker run --mount src=$TRAVIS_BUILD_DIR/,target=/repo,type=bind docker.pkg.github.com/strauman/travis-latexbuild/texlive-latexbuild:texliveonfly-2019
+  - docker run --mount src=$TRAVIS_BUILD_DIR/,target=/repo,type=bind phpirates/texlive-latexbuild:texliveonfly
