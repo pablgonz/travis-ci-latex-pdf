@@ -27,11 +27,11 @@ jobs:
           cd context
           wget http://minimals.contextgarden.net/setup/first-setup.sh
           sh ./first-setup.sh --modules=all --engine=luatex
-          . tex/setuptex
           cd ..
 
       - name: Compile context-mwe.tex
         run: |
+          . context/tex/setuptex
           cd src/context
           context context-mwe.tex
 
