@@ -16,10 +16,10 @@ jobs:
         uses: actions/cache@v1
         with:
           path: context
-          key: ${{ runner.os }}
+          key: ${{ runner.os }}-context
 
       - name: Install ConTeXt
-        if: steps.cache-primes.outputs.cache-hit != 'true'
+        if: steps.cache-context.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y wget rsync unzip
