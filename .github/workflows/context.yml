@@ -1,0 +1,30 @@
+name: Compile a ConTeXt document
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+      - name: Compile context-mwe.tex
+        run: |
+          apt-get update
+          apt-get install -y wget rsync unzip
+          mkdir context
+          cd context
+          wget http://minimals.contextgarden.net/setup/first-setup.sh
+          sh ./first-setup.sh --modules=all --engine=luatex
+          . tex/setuptex
+          cd ../src/context
+          context contex-mwe.tex
+
+      - name: Cache ConTeXt
+        uses: actions/cache@v1
+        with:
+          path: context
+          key: ${{ runner.os }}
+          restore-keys: ${{ runner.os }}
