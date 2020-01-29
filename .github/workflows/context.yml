@@ -10,7 +10,16 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v1
-      - name: Compile context-mwe.tex
+
+      - name: Cache ConTeXt installation
+        id: cache-context
+        uses: actions/cache@v1
+        with:
+          path: context
+          key: ${{ runner.os }}
+
+      - name: Install ConTeXt
+        if: steps.cache-primes.outputs.cache-hit != 'true'
         run: |
           sudo apt-get update
           sudo apt-get install -y wget rsync unzip
@@ -19,7 +28,11 @@ jobs:
           wget http://minimals.contextgarden.net/setup/first-setup.sh
           sh ./first-setup.sh --modules=all --engine=luatex
           . tex/setuptex
-          cd ../src/context
+          cd ..
+
+      - name: Compile context-mwe.tex
+        run: |
+          cd src/context
           context context-mwe.tex
 
       - name: Upload pdf
@@ -28,9 +41,4 @@ jobs:
           name: context-mwe
           path: src/context/context-mwe.pdf
 
-      - name: Cache ConTeXt installation
-        uses: actions/cache@v1
-        with:
-          path: context
-          key: ${{ runner.os }}
-          restore-keys: ${{ runner.os }}
+
