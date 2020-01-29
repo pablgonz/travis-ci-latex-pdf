@@ -506,4 +506,13 @@ https://tex.stackexchange.com/questions/437553/gitlab-ci-using-miktex-docker-ima
 
 # <a name="context">ConTeXt</a>
 
-https://tex.stackexchange.com/a/459487/98850
+Following a [TeX Stackexchange answer from the TeXnician](https://tex.stackexchange.com/a/459487/98850) and the official docs at https://wiki.contextgarden.net/ConTeXt_Standalone#Single_user_installation it is not too difficult to install ConTeXt (and cache the installation).
+
+In this repository there is an example for Github Actions, see [.github/workflows/context.yml](.github/workflows/context.yml), but it should be easy to extend to other build systems as well.
+
+## Usage of the Github Action
+
+* Copy [.github/workflows/context.yml](.github/workflows/context.yml) to your repository in `.github/workflows`
+* Adjust the path to your tex file and possibly other things you want customized
+* Commit and push
+* On GitHub, check the Actions tab
