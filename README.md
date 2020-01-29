@@ -516,3 +516,6 @@ In this repository there is an example for Github Actions, see [.github/workflow
 * Adjust the path to your tex file and possibly other things you want customized
 * Commit and push
 * On GitHub, check the Actions tab
+
+This actions caches the ConTeXt installation.
+Build time example file: around 30-40 sec.
