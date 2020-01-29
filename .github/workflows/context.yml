@@ -1,0 +1,44 @@
+name: Compile a ConTeXt document
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v1
+
+      - name: Cache ConTeXt installation
+        id: cache-context
+        uses: actions/cache@v1
+        with:
+          path: context
+          key: ${{ runner.os }}-context
+
+      - name: Install ConTeXt
+        if: steps.cache-context.outputs.cache-hit != 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y wget rsync unzip
+          mkdir context
+          cd context
+          wget http://minimals.contextgarden.net/setup/first-setup.sh
+          sh ./first-setup.sh --modules=all --engine=luatex
+          cd ..
+
+      - name: Compile context-mwe.tex
+        run: |
+          . context/tex/setuptex
+          cd src/context
+          context context-mwe.tex
+
+      - name: Upload pdf
+        uses: actions/upload-artifact@v1
+        with:
+          name: context-mwe
+          path: src/context/context-mwe.pdf
+
+
