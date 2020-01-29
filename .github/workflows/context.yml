@@ -14,6 +14,7 @@ jobs:
         run: |
           apt-get update
           apt-get install -y wget rsync unzip
+          rm -rf /var/lib/apt/lists/*
           mkdir context
           cd context
           wget http://minimals.contextgarden.net/setup/first-setup.sh
