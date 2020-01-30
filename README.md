@@ -114,7 +114,7 @@ Disadvantages:
 * Packages are not cached, downloading them all every time costs time
 * No way to disable the automatic upload of pdfs to the master branch (and because of that it has been commented out in this repo)
 
-Example in this repo: [vinay04010-docker-tectonic.yml](.github/workflows/vinay04010-docker-tectonic.yml)
+Example in this repo: [vinay04010-docker-tectonic.yml](.github/disabled-workflows/vinay04010-docker-tectonic.yml)
 
 Build time example files: 4-5 min.
 
