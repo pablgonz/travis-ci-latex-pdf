@@ -511,6 +511,8 @@ https://tex.stackexchange.com/questions/437553/gitlab-ci-using-miktex-docker-ima
 
 Following a [TeX Stackexchange answer from the TeXnician](https://tex.stackexchange.com/a/459487/98850) and the official docs at https://wiki.contextgarden.net/ConTeXt_Standalone#Single_user_installation it is not too difficult to install ConTeXt (and cache the installation).
 
+As an alternative, you could use a Docker image, for example one from https://gitlab.com/islandoftex/images/context
+
 In this repository there is an example for Github Actions, see [.github/workflows/context.yml](.github/workflows/context.yml), but it should be easy to extend to other build systems as well.
 
 ## Usage of the Github Action
